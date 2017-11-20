@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为IUserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.chatRobot.dao.IUserDao">
+        <!--<resultMap id="baseUser" type="com.sao.domain.">
+            <id column="userId" property="userId"/>
+            <result column="userName" property="userName"/>
+            <result column="userPass" property="userPass"/>
+            <result column="userSex" property="userSex"/>
+        </resultMap>-->
+
+    <select id="findUser" resultType="UserInfo" parameterType="string">
+        SELECT * FROM userInfo WHERE userName = #{userName}
+    </select>
+
+
+</mapper>

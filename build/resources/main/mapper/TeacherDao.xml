@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为Dao接口方法提供sql语句配置 -->
+<mapper namespace="com.chatRobot.dao.TeacherDao">
+
+
+    <select id="findAllTeachers" resultType="TeacherInfo">
+      SELECT * FROM teacherInfo
+    </select>
+
+    <select id="findTeacherById" resultType="TeacherInfo">
+        SELECT * FROM teacherInfo
+        WHERE tId = #{tId}
+    </select>
+
+    <insert id="insertTeacher" parameterType="TeacherInfo">
+        INSERT  INTO  teacherInfo(tName,tLesson,tNo)
+        VALUES(#{tt.tName},#{tt.tLesson},#{tt.tNo})
+    </insert>
+
+    <delete id="deleteTeacher" parameterType="_int" >
+        DELETE  FROM teacherInfo
+        WHERE tId = #{tId}
+    </delete>
+
+    <update id="updateTeacher" parameterType="TeacherInfo">
+         UPDATE teacherInfo
+         SET tLesson = #{tt.tLesson} ,tName = #{tt.tName} ,tNo = #{tt.tNo}
+        WHERE  tId = #{tt.tId}
+    </update>
+
+    <!--   #{pageInfo.startRow,jdbcType=INTEGER},#{pageInfo.pageSize,jdbcType=INTEGER}  -->
+    <select id="findPageAllT" resultType="TeacherInfo" parameterType="PageInfo">
+        SELECT *
+        FROM teacherInfo
+        Limit #{startRow},#{pageSize}
+    </select>
+
+    <select id="countT" resultType="_int">
+        SELECT count(*)
+        FROM teacherInfo
+    </select>
+
+
+</mapper>
